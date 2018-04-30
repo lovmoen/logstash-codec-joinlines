@@ -299,4 +299,3 @@ module LogStash module Codecs class Joinlines < LogStash::Codecs::Base
   end
 
 end end end # class LogStash::Codecs::Joinlines
-

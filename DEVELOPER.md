@@ -1,2 +1,3 @@
 # logstash-codec-joinlines
-Example codec plugin. This should help bootstrap your effort to write your own codec plugin!
+A codec plugin for Logstash; based on logstash-codec-multiline.
+It allows for specifying multiple patterns to match for joining lines.

@@ -35,9 +35,10 @@ describe LogStash::Codecs::Joinlines do
         whats.push(what)
       end
 
+      # Must flush to get last event
       codec.flush do |event|
         events.push(event)
-        whats.push("final")
+        whats.push("final") # dummy
       end
 
       expect(events.size).to eq(3)
@@ -413,13 +414,15 @@ describe LogStash::Codecs::Joinlines do
         expect(codec).to have_an_empty_buffer
 
         assert_produced_events("de.log", auto_flush_interval - 0.3) do
-          #this file is read before auto-flush, thus last event is not flushed yet
+          # this file is read before auto-flush, thus last event is not flushed yet
+          # This differs from logstash-codec-multiline because of not emitting
+          # last received event even if not matched
           expect(events.size).to eq(1)
         end
 
-        codec.flush { |event| events << event }
+        codec.flush { |event| events << event } # flushing here releases the event
         expect(events.size).to eq(2)
-        expect(events[1]).to match_path_and_line(nil, lines["de.log"])
+        expect(events[1]).to match_path_and_line(nil, lines["de.log"]) # but path is not set when emitted by flush
         expect(codec).to have_an_empty_buffer
 
         assert_produced_events("fr.log", auto_flush_interval + 0.1) do

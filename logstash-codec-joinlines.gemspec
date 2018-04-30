@@ -5,8 +5,8 @@ Gem::Specification.new do |s|
   s.summary       = 'Merges multiline messages into a single event, allowing for multiple patterns.'
   s.description   = 'This gem is a Logstash plugin required to be installed on top of the Logstash core pipeline using $LS_HOME/bin/logstash-plugin install gemname. This gem is not a stand-alone program'
   s.homepage      = 'https://github.com/lovmoen/logstash-codec-joinlines'
-  s.authors       = ['lovmoen@noreply.github.com']
-  s.email         = 'lovmoen@noreply.github.com'
+  s.authors       = ['Svein L. Ellingsen (lovmoen)']
+  s.email         = 'lovmoen@gmail.com'
   s.require_paths = ['lib']
 
   # Files
