@@ -1,3 +1,5 @@
+before_install:
+  - chmod +x ci/build.sh
 sudo: false
 language: ruby
 cache: bundler
